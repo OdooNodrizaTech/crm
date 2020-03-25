@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="crm_lead_source_1" model="crm.lead.source">
+            <field name="id">1</field>
+            <field name="name">Teléfono</field>
+            <field name="position">1</field>
+        </record>
+        <record id="crm_lead_source_2" model="crm.lead.source">
+            <field name="id">2</field>
+            <field name="name">Chat</field>
+            <field name="position">2</field>
+        </record>
+        <record id="crm_lead_source_3" model="crm.lead.source">
+            <field name="id">3</field>
+            <field name="name">Manual</field>
+            <field name="position">3</field>
+        </record>
+        <record id="crm_lead_source_4" model="crm.lead.source">
+            <field name="id">4</field>
+            <field name="name">Automatización</field>
+            <field name="position">4</field>
+        </record>                                                                    
+    </data>
+</openerp>

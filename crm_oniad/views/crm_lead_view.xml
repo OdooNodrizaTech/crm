@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>   
+    <record id="crm_oniad_crm_case_form_view_oppor" model="ir.ui.view">
+        <field name="name">crm_oniad_crm_case_form_view_oppor</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="commercial_activity_type" />
+                <field name="lead_oniad_type" />
+                <field name="marketing_campaign" readonly="1" string="Campaña de marketing" />
+                <field name="crm_lead_source_id" readonly="1" />                                                
+            </field>
+            <field name="user_id" position="after">
+                <field name="done_user_id" attrs="{'readonly': True}" groups="base.group_system" />
+                <field name="oniad_survey_link" widget="url" />                                
+            </field>
+            <field name="day_close" position="after">
+                <field name="day_deadline" groups="base.group_no_one" />
+            </field>
+            <field name="fax" position="after">
+                <field name="website" widget="url" />
+            </field>                                                               
+        </field>
+    </record>
+    <record id="crm_oniad_crm_case_tree_view_oppor" model="ir.ui.view">
+        <field name="name">crm_oniad_crm_case_tree_view_oppor</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">
+            <field name="user_id" position="before">
+                <field name="commercial_activity_type" />
+                <field name="lead_oniad_type" />                
+            </field>                                                
+        </field>
+    </record>    
+    <record id="crm_oniad_crm_case_form_view_leads" model="ir.ui.view">
+        <field name="name">crm_oniad_crm_case_form_view_leads</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_leads" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="commercial_activity_type" />
+                <field name="lead_oniad_type" />
+                <field name="type" invisible="1" />            
+                <field name="marketing_campaign" readonly="1" string="Campaña de marketing" />
+                <field name="crm_lead_source_id" readonly="1" />                
+            </field>
+            <field name="fax" position="after">
+                <field name="website" widget="url" />
+            </field>
+            <field name="mobile" position="replace">
+                <field name="mobile" widget="phone" />
+            </field>                                                
+        </field>
+    </record>
+    <record id="crm_oniad_crm_case_tree_view_leads" model="ir.ui.view">
+        <field name="name">crm_oniad_crm_case_tree_view_leads</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">
+            <field name="user_id" position="before">
+                <field name="commercial_activity_type" />
+                <field name="lead_oniad_type" />                
+            </field>                                                
+        </field>
+    </record>
+    <record id="crm_oniad_view_create_opportunity_simplified" model="ir.ui.view">
+        <field name="name">crm_oniad_view_create_opportunity_simplified</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_create_opportunity_simplified" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">
+            <field name="priority" position="before">
+                <field name="tag_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
+                <field name="commercial_activity_type" />
+                <field name="lead_oniad_type" />
+                <field name="type" invisible="1" />                
+                <field name="marketing_campaign" readonly="1" string="Campaña de marketing" />
+            </field>                                                
+        </field>
+    </record>
+    <record id="crm_oniad_crm_lead_kanban" model="ir.ui.view">
+        <field name="name">crm_oniad_crm_lead_kanban</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="arch" type="xml">            
+            <field name="company_currency" position="after">
+                <field name="day_deadline" invisible="1" />
+            </field>
+            <xpath expr="//kanban/templates//div//div/strong" position="before">            
+                <t t-if="record.date_deadline.value and record.day_deadline.value&lt;=0">
+                    <span style="color:red;"><b>Urgente</b></span><br/>  
+                </t>                                                
+            </xpath>            
+        </field>
+    </record>    
+    <record id="crm_oniad_view_crm_case_opportunities_filter" model="ir.ui.view">
+        <field name="name">crm_oniad_view_crm_case_opportunities_filter</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="priority" eval="70"/>
+        <field name="arch" type="xml">
+            <filter name="unassigned" position="after">
+                <separator/>
+                <filter string="Flujos" name="date_conversion_false" domain="[('date_conversion','=', False)]"/>
+                <filter string="Convertidos" name="date_conversion_true" domain="[('date_conversion','!=', False)]"/>                
+            </filter>                                                
+        </field>
+    </record>        
+</odoo>
