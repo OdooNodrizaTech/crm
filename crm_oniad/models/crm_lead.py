@@ -131,10 +131,34 @@ class CrmLead(models.Model):
         return_def.website = self.website
         return return_def
     
+    @api.one
+    def clean_next_activity(self):
+        #next_activity_id
+        if self.next_activity_id.id>0:
+            self.next_activity_id = False
+        #date_action
+        if self.date_action!=False:
+            self.date_action = False
+        #title_action
+        if self.title_action!=False:
+            self.title_action = False
+    
     @api.multi
     def action_set_won(self):
-        self.done_user_id = self.user_id            
-        return super(CrmLead, self).action_set_won()                                                            
+        #done_user_id
+        for lead in self:
+            lead.done_user_id = lead.user_id
+            lead.clean_next_activity()
+        #super            
+        return super(CrmLead, self).action_set_won()
+        
+    @api.multi
+    def action_set_lost(self):
+        #done_user_id
+        for lead in self:
+            lead.clean_next_activity()
+        #super            
+        return super(CrmLead, self).action_set_lost()                                                                    
                 
     @api.depends('date_deadline')
     def _compute_day_deadline(self):
