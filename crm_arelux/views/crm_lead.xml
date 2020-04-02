@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>       
+<odoo>
+    <record id="crm_arelux_view_create_opportunity_simplified" model="ir.ui.view">
+        <field name="name">crm_arelux_view_create_opportunity_simplified</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_create_opportunity_simplified"/>
+        <field name="priority" eval="91"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="date_deadline_override" readonly="False"/>                                                
+            </field>                                    
+        </field>
+    </record>       
     <record id="crm_arelux_crm_lead_view_tree_activityr" model="ir.ui.view">
         <field name="name">crm_arelux_crm_lead_view_tree_activityr</field>
         <field name="model">crm.lead</field>
@@ -34,6 +45,9 @@
             </field>
             <field name="planned_revenue" position="replace">
                 <field name="planned_revenue" invisible="1"/>
+            </field>
+            <field name="create_date" position="after">
+                <field name="date_open"/>                                                
             </field>                                                
         </field>
     </record>
@@ -59,7 +73,16 @@
                 <page name="comment_customer" string="Comentarios Cliente">
                     <field name="comment_customer"/>
                 </page>
-            </page>                                                
+            </page>
+            <field name="phone" position="after">
+                <field name="partner_id_credit_limit"/>                                                
+            </field>
+            <field name="user_id" position="after">
+                <field name="partner_id_user_id"/>                                                
+            </field>
+            <field name="fax" position="after">
+                <field name="website" widget="url" />
+            </field>                                                
         </field>
     </record>
     <record id="crm_arelux_view_crm_case_opportunities_filter" model="ir.ui.view">
@@ -73,6 +96,11 @@
             </filter>
             <filter name="this_week" position="replace">
                 <filter string="Actividades de esta Semana" name="this_week" domain="['&amp;', ('date_action', '>=', context_today().strftime('%Y-%m-%d 00:00:00')),('date_action', '&lt;=', (context_today()+datetime.timedelta(days=7)).strftime('%Y-%m-%d 23:59:59'))]"/>
+            </filter>
+            <filter name="unassigned" position="after">
+                <separator/>
+                <filter string="Flujos" name="date_conversion_false" domain="[('date_conversion','=', False)]"/>
+                <filter string="Convertidos" name="date_conversion_true" domain="[('date_conversion','!=', False)]"/>                
             </filter>                                                
         </field>
     </record>
@@ -101,6 +129,9 @@
                 <filter string="Con siguiente actividad" name="with_date_action" domain="[('date_action','!=',False)]"/>
                 <filter string="Sin siguiente actividad" name="without_date_action" domain="[('date_action','=',False)]"/>
                 <separator/>                
+            </filter>
+            <filter name="groupby_createmonth" position="after">
+                <filter string="Provincia" name="groupby_state_id" domain="[]" context="{'group_by':'state_id'}"/>
             </filter>                                                                                                                
         </field>
     </record>    
@@ -125,7 +156,13 @@
                         </div>
                     </div>
                 </group>                                                
-            </xpath>                                    
+            </xpath>
+            <field name="fax" position="after">
+                <field name="website" widget="url" />
+            </field>
+            <field name="mobile" position="replace">
+                <field name="mobile" widget="phone" />
+            </field>                                    
         </field>
     </record>                                                
 </odoo>

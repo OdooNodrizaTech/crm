@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from . import crm_activity_objective
-from . import crm_activity_log
-from . import crm_lead
-from . import mail_message
-from . import mail_message_little
-from . import res_partner
+import crm_activity_objective
+import crm_activity_log
+import crm_lead
+import crm_lead_to_opportunity
+import mail_message
+import mail_message_little
+import res_partner
