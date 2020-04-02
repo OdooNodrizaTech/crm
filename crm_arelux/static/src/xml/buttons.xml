@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template xml:space="preserve">
+    <t t-extend="ListView.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after">
+            <t t-if="widget.model=='crm.lead'">
+                <button class="btn btn-primary btn-sm o_crm_lead_pedir_dormido_button" type="button">Pedir dormido</button>
+                <button class="btn btn-primary btn-sm o_crm_lead_pedir_activo_button" type="button">Pedir inactivo</button>
+            </t>
+        </t>
+    </t>
+</template>

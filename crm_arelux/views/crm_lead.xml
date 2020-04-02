@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>       
+    <record id="crm_arelux_crm_lead_view_tree_activityr" model="ir.ui.view">
+        <field name="name">crm_arelux_crm_lead_view_tree_activityr</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_tree_activity" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">
+            <field name="planned_revenue" position="replace">
+                <field name="planned_revenue" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="total_sale_order"/>
+                <field name="account_invoice_amount_untaxed_total"/>
+                <field name="days_from_last_sale_order"/>
+                <field name="days_from_last_message"/>                
+            </field>
+            <field name="next_activity_id" position="after">
+                <field name="next_activity_objective_id"/>
+            </field>                                                            
+        </field>
+    </record>    
+    <record id="crm_arelux_crm_case_tree_view_oppor" model="ir.ui.view">
+        <field name="name">crm_arelux_crm_case_tree_view_oppor</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">
+            <field name="probability" position="after">
+                <field name="currency_id" invisible="1"/>
+                <field name="total_sale_order"/>
+                <field name="account_invoice_amount_untaxed_total"/>                
+                <field name="days_from_last_sale_order"/>
+                <field name="days_from_last_message"/>
+            </field>
+            <field name="planned_revenue" position="replace">
+                <field name="planned_revenue" invisible="1"/>
+            </field>                                                
+        </field>
+    </record>
+    <record id="crm_arelux_crm_case_form_view_oppor" model="ir.ui.view">
+        <field name="name">crm_arelux_crm_case_form_view_oppor</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="currency_id" invisible="1"/>
+                <field name="total_sale_order"/>
+                <field name="account_invoice_amount_untaxed_total"/>
+                <field name="partner_id_total_sale_order"/>
+                <field name="partner_id_account_invoice_amount_untaxed_total"/>
+                <field name="days_from_last_sale_order"/>
+                <field name="days_from_last_message"/>
+            </field>
+            <field name="next_activity_id" position="after">
+                <field name="next_activity_objective_id" options="{'no_create': True, 'no_open': True}" />                                                                
+            </field>
+            <page name="lead" position="after">
+                <page name="comment_customer" string="Comentarios Cliente">
+                    <field name="comment_customer"/>
+                </page>
+            </page>                                                
+        </field>
+    </record>
+    <record id="crm_arelux_view_crm_case_opportunities_filter" model="ir.ui.view">
+        <field name="name">crm_arelux_view_crm_case_opportunities_filter</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">
+            <filter name="today" position="replace">
+                <filter string="Actividades de Hoy" name="today" domain="[('date_action', '>=', context_today().strftime('%Y-%m-%d 00:00:00')),('date_action', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>                
+            </filter>
+            <filter name="this_week" position="replace">
+                <filter string="Actividades de esta Semana" name="this_week" domain="['&amp;', ('date_action', '>=', context_today().strftime('%Y-%m-%d 00:00:00')),('date_action', '&lt;=', (context_today()+datetime.timedelta(days=7)).strftime('%Y-%m-%d 23:59:59'))]"/>
+            </filter>                                                
+        </field>
+    </record>
+    <record id="crm_arelux_crm_case_tree_view_leads" model="ir.ui.view">
+        <field name="name">crm_arelux_crm_case_tree_view_leads</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">
+            <field name="team_id" position="after">
+                <field name="date_action" />
+                <field name="next_activity_id" />
+                <field name="next_activity_objective_id" />
+                <field name="title_action" />                
+            </field>                                                            
+        </field>
+    </record>
+    <record id="crm_arelux_view_crm_case_leads_filter" model="ir.ui.view">
+        <field name="name">crm_arelux_view_crm_case_leads_filter</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_leads_filter" />
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <filter name="not_opt_out" position="before">
+                <separator/>
+                <filter string="Con siguiente actividad" name="with_date_action" domain="[('date_action','!=',False)]"/>
+                <filter string="Sin siguiente actividad" name="without_date_action" domain="[('date_action','=',False)]"/>
+                <separator/>                
+            </filter>                                                                                                                
+        </field>
+    </record>    
+    <record id="crm_arelux_crm_case_form_view_leads" model="ir.ui.view">
+        <field name="name">crm_arelux_crm_case_form_view_leads</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+        <field name="priority" eval="90"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]//group[4]" position="after">
+                <group>
+                    <label for="next_activity_id"/>
+                    <div>
+                        <div class="o_row mr16">
+                            <field name="next_activity_id" options="{'no_create': True, 'no_open': True}" domain="['|',('team_id','=',False),('team_id','=',team_id)]"/>
+                            <field name="next_activity_objective_id" options="{'no_create': True, 'no_open': True}" />
+                            <span class="oe_form_field" attrs="{'invisible': ['|', ('next_activity_id', '=', False), ('date_action', '=', False)]}">el</span>
+                            <field name="date_action" attrs="{'invisible': [('next_activity_id', '=', False)]}" placeholder="Selecciona una fecha..."/>
+                        </div>
+                        <div>
+                            <field name="title_action" placeholder="e.g. Discuss proposal" attrs="{'invisible': [('next_activity_id', '=', False)]}"/>
+                        </div>
+                    </div>
+                </group>                                                
+            </xpath>                                    
+        </field>
+    </record>                                                
+</odoo>
