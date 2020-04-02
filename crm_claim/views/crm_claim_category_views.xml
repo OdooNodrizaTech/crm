@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<odoo>
+    <menuitem id="menu_config_claim" name="Reclamacion" groups="base.group_no_one" parent="sales_team.menu_sale_config" sequence="55"/>
+    <record id="crm_claim_category_form" model="ir.ui.view">
+        <field name="name">crm.claim.category.form</field>
+        <field name="model">crm.claim.category</field>
+        <field name="arch" type="xml">
+            <form string="Categorias de reclamacion">
+                <group>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="crm_claim_category_tree" model="ir.ui.view">
+        <field name="name">crm.claim.category.tree</field>
+        <field name="model">crm.claim.category</field>
+        <field name="arch" type="xml">
+            <tree string="Categorias de reclamacion">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="crm_claim_categ_action" model="ir.actions.act_window">
+        <field name="name">Categorias de reclamacion</field>
+        <field name="res_model">crm.claim.category</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="crm_claim_category_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Haga clic para crear una categoria de reclamacion.</p>
+            <p>Crea categorias de reclamacion para administrar y clasificar mejor tus reclamaciones. Algunos ejemplos de reclamaciones pueden ser: accion preventiva, accion correctiva.</p>
+        </field>
+    </record>
+    <menuitem action="crm_claim_categ_action" name="Categorias" id="menu_crm_case_claim-act" parent="menu_config_claim" groups="base.group_no_one"/>
+</odoo>
