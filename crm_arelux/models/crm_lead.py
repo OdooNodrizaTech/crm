@@ -100,12 +100,7 @@ class CrmLead(models.Model):
         compute='_get_partner_id_user_id',
         store=False,
         string='Comercial cliente'
-    )    
-    partner_id_credit_limit = fields.Float(
-        compute='_get_partner_id_credit_limit',
-        store=False,
-        string='Credito concedido'
-    )
+    )        
     website = fields.Char(
         string='Sitio web'
     )
@@ -126,11 +121,6 @@ class CrmLead(models.Model):
     def _get_partner_id_user_id(self):
         for crm_lead_obj in self:
             crm_lead_obj.partner_id_user_id = crm_lead_obj.partner_id.user_id
-            
-    @api.one        
-    def _get_partner_id_credit_limit(self):
-        for crm_lead_obj in self:
-            crm_lead_obj.partner_id_credit_limit = crm_lead_obj.partner_id.credit_limit
     
     @api.one
     def clean_next_activity(self):
