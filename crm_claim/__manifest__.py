@@ -14,6 +14,7 @@
         'views/crm_claim_stage_views.xml',
         'views/res_partner_views.xml',
         'views/crm_claim_menu.xml',
+        'views/sale_order_view.xml',
         'security/ir.model.access.csv',
         'report/crm_claim_report_view.xml',
         'data/crm_claim_data.xml',
