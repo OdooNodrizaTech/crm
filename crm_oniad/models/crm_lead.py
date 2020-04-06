@@ -166,4 +166,4 @@ class CrmLead(models.Model):
             if lead.date_deadline!=False:
                 current_date = fields.Datetime.from_string(str(datetime.today().strftime("%Y-%m-%d")))
                 date_deadline = fields.Datetime.from_string(lead.date_deadline)        
-                lead.day_deadline = (date_deadline - current_date).days                                          
+                lead.day_deadline = (date_deadline - current_date).days                                                          
