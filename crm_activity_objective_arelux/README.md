@@ -66,3 +66,35 @@ Nota2: Este funcionamiento SOLO se aplica cuando hay definido un objetivo de sig
 
 ### Odoo Crm Lead Change Inactivos
 Modifica los flujos de ventas que corresponde para asignarles el objetivo de siguiente actividad a ‘Activar’ según diferentes criterios.
+
+
+-----
+Adicionalmente se definen estos otros crones:
+
+### Odoo Res Partner Fields Generate
+Frecuencia: 1 vez al día
+
+Descripción:
+
+Define los campos: total_sale_order, account_invoice_amount_untaxed_total, days_from_last_sale_order, days_from_last_message del modelo res.partner según lo definido en las vistas.
+
+### Odoo Res Partner Fields Generate Days
+Frecuencia: 1 vez al día
+
+Descripción:
+
+Re-define los campos: days_from_last_sale_order y days_from_last_message del modelo res.partner
+
+### Odoo Crm Lead Fields Generate
+Frecuencia: 1 vez al día
+
+Descripción:
+
+Define los campos: total_sale_order, total_sale_order_last_30_days, total_sale_order_last_90_days, account_invoice_amount_untaxed_total, days_from_last_sale_order, days_from_last_message del modelo crm.lead según lo definido en las vistas.
+
+### Odoo Crm Lead Fields Generate Days
+Frecuencia: 1 vez al día
+
+Descripción:
+
+Re-define los campos: days_from_last_sale_order y days_from_last_message del modelo crm.lead
