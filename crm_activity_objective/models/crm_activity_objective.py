@@ -32,4 +32,4 @@ class CrmActivityObjective(models.Model):
     probability = fields.Integer(
         string='Probabilidad', 
         default=0
-    )                             
+    )

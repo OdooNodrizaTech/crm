@@ -48,6 +48,6 @@ class MailMessage(models.Model):
                 if mail_message_id.activity_objective_id.id>0:
                     mail_message_little_vals['activity_objective_id'] = mail_message_id.activity_objective_id.id
                 #create
-                mail_message_little_obj = self.env['mail.message.little'].sudo().create(mail_message_little_vals)
+                mail_message_little_obj = self.env['mail.message.little'].sudo().create(mail_message_little_vals)                                        
         #return_id                    
         return return_id

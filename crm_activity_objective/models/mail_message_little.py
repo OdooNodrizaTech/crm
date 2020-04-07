@@ -38,4 +38,4 @@ class MailMessageLittle(models.Model):
     activity_objective_id = fields.Many2one(
         comodel_name='crm.activity.objective',
         string='Objetivo de actividad'
-    )                                        
+    )

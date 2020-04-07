@@ -1,4 +1,4 @@
-odoo.define('simcard_piavita.tree_view_button', function (require){
+odoo.define('crm_activity_objective.tree_view_button', function (require){
 "use strict";
     var ListView = require('web.ListView');
     var Model = require('web.DataModel');

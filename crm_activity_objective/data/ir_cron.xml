@@ -1,49 +1,5 @@
 <openerp>
-    <data noupdate="1">
-        <record id="cron_odoo_res_partner_fields_generate" model="ir.cron">
-            <field name="name">Odoo Res Partner Fields Generate</field>
-            <field name="active" eval="False" />
-            <field name="user_id" ref="base.user_root" />
-            <field name="interval_number">1</field>
-            <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
-            <field name="model" eval="'res.partner'" />
-            <field name="function" eval="'cron_odoo_res_partner_fields_generate'" />
-            <field name="args" eval="" />
-        </record>
-        <record id="cron_odoo_res_partner_fields_generate_days" model="ir.cron">
-            <field name="name">Odoo Res Partner Fields Generate Days</field>
-            <field name="active" eval="False" />
-            <field name="user_id" ref="base.user_root" />
-            <field name="interval_number">1</field>
-            <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
-            <field name="model" eval="'res.partner'" />
-            <field name="function" eval="'cron_odoo_res_partner_fields_generate_days'" />
-            <field name="args" eval="" />
-        </record>
-        <record id="cron_odoo_crm_lead_fields_generate" model="ir.cron">
-            <field name="name">Odoo Crm Lead Fields Generate</field>
-            <field name="active" eval="False" />
-            <field name="user_id" ref="base.user_root" />
-            <field name="interval_number">1</field>
-            <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
-            <field name="model" eval="'crm.lead'" />
-            <field name="function" eval="'cron_odoo_crm_lead_fields_generate'" />
-            <field name="args" eval="" />
-        </record>
-        <record id="cron_odoo_crm_lead_fields_generate_days" model="ir.cron">
-            <field name="name">Odoo Crm Lead Fields Generate Days</field>
-            <field name="active" eval="False" />
-            <field name="user_id" ref="base.user_root" />
-            <field name="interval_number">1</field>
-            <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
-            <field name="model" eval="'crm.lead'" />
-            <field name="function" eval="'cron_odoo_crm_lead_fields_generate_days'" />
-            <field name="args" eval="" />
-        </record>        
+    <data noupdate="1">        
         <record id="cron_odoo_crm_lead_change_empty_next_activity_objective_id" model="ir.cron">
             <field name="name">Odoo Crm Lead Change Empty next_activity_objective_id</field>
             <field name="active" eval="False" />

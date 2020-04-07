@@ -10,39 +10,13 @@
                 <field name="date_deadline_override" readonly="False"/>                                                
             </field>                                    
         </field>
-    </record>       
-    <record id="crm_arelux_crm_lead_view_tree_activityr" model="ir.ui.view">
-        <field name="name">crm_arelux_crm_lead_view_tree_activityr</field>
-        <field name="model">crm.lead</field>
-        <field name="inherit_id" ref="crm.crm_lead_view_tree_activity" />
-        <field name="priority" eval="20"/>                
-        <field name="arch" type="xml">
-            <field name="planned_revenue" position="replace">
-                <field name="planned_revenue" invisible="1"/>
-                <field name="currency_id" invisible="1"/>
-                <field name="total_sale_order"/>
-                <field name="account_invoice_amount_untaxed_total"/>
-                <field name="days_from_last_sale_order"/>
-                <field name="days_from_last_message"/>                
-            </field>
-            <field name="next_activity_id" position="after">
-                <field name="next_activity_objective_id"/>
-            </field>                                                            
-        </field>
-    </record>    
+    </record>               
     <record id="crm_arelux_crm_case_tree_view_oppor" model="ir.ui.view">
         <field name="name">crm_arelux_crm_case_tree_view_oppor</field>
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
         <field name="priority" eval="20"/>                
-        <field name="arch" type="xml">
-            <field name="probability" position="after">
-                <field name="currency_id" invisible="1"/>
-                <field name="total_sale_order"/>
-                <field name="account_invoice_amount_untaxed_total"/>                
-                <field name="days_from_last_sale_order"/>
-                <field name="days_from_last_message"/>
-            </field>
+        <field name="arch" type="xml">            
             <field name="planned_revenue" position="replace">
                 <field name="planned_revenue" invisible="1"/>
             </field>
@@ -57,18 +31,6 @@
         <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
         <field name="priority" eval="20"/>                
         <field name="arch" type="xml">
-            <field name="tag_ids" position="after">
-                <field name="currency_id" invisible="1"/>
-                <field name="total_sale_order"/>
-                <field name="account_invoice_amount_untaxed_total"/>
-                <field name="partner_id_total_sale_order"/>
-                <field name="partner_id_account_invoice_amount_untaxed_total"/>
-                <field name="days_from_last_sale_order"/>
-                <field name="days_from_last_message"/>
-            </field>
-            <field name="next_activity_id" position="after">
-                <field name="next_activity_objective_id" options="{'no_create': True, 'no_open': True}" />                                                                
-            </field>
             <page name="lead" position="after">
                 <page name="comment_customer" string="Comentarios Cliente">
                     <field name="comment_customer"/>
@@ -110,7 +72,6 @@
             <field name="team_id" position="after">
                 <field name="date_action" />
                 <field name="next_activity_id" />
-                <field name="next_activity_objective_id" />
                 <field name="title_action" />                
             </field>                                                            
         </field>
@@ -144,7 +105,6 @@
                     <div>
                         <div class="o_row mr16">
                             <field name="next_activity_id" options="{'no_create': True, 'no_open': True}" domain="['|',('team_id','=',False),('team_id','=',team_id)]"/>
-                            <field name="next_activity_objective_id" options="{'no_create': True, 'no_open': True}" />
                             <span class="oe_form_field" attrs="{'invisible': ['|', ('next_activity_id', '=', False), ('date_action', '=', False)]}">el</span>
                             <field name="date_action" attrs="{'invisible': [('next_activity_id', '=', False)]}" placeholder="Selecciona una fecha..."/>
                         </div>
