@@ -74,9 +74,6 @@
                     <field name="comment_customer"/>
                 </page>
             </page>
-            <field name="phone" position="after">
-                <field name="partner_id_credit_limit"/>                                                
-            </field>
             <field name="user_id" position="after">
                 <field name="partner_id_user_id"/>                                                
             </field>
