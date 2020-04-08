@@ -68,7 +68,6 @@ Nota2: Este funcionamiento SOLO se aplica cuando hay definido un objetivo de sig
 Modifica los flujos de ventas que corresponde para asignarles el objetivo de siguiente actividad a ‘Activar’ según diferentes criterios.
 
 
------
 Adicionalmente se definen estos otros crones:
 
 ### Odoo Res Partner Fields Generate
