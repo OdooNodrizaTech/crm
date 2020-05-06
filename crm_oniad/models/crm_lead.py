@@ -2,8 +2,8 @@
 import logging
 _logger = logging.getLogger(__name__)
 
-from openerp import api, models, fields
-from openerp.exceptions import Warning
+from odoo import api, models, fields
+from odoo.exceptions import Warning
 from datetime import datetime
 
 import uuid
@@ -55,20 +55,7 @@ class CrmLead(models.Model):
             ('other','Otro')                         
         ],
         string='Tipo de lead'
-    )
-    #Temporal, tendremos que quitarlo
-    oniad_survey_link = fields.Char(
-        compute='_oniad_survey_link',
-        string='OniAd Survey Link',
-        store=False
-    )
-    
-    @api.multi        
-    def _oniad_survey_link(self):
-        for record in self:
-            if record.partner_id.id>0:
-                if record.partner_id.oniad_user_id.id>0:
-                    record.oniad_survey_link = 'https://es.surveymonkey.com/r/7T2H5N5?partner_id='+str(record.partner_id.id)+'&lead_id='+str(record.id)+'&oniad_user_id='+str(record.partner_id.oniad_user_id.id)                                        
+    )                                        
     
     @api.onchange('type')
     def onchange_type(self):

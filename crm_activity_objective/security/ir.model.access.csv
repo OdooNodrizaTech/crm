@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_crm_activity_objective_admin,crm.activity.objective,model_crm_activity_objective,,1,1,1,1
-access_crm_activity_objective_group_user,crm.activity.objective.user,model_crm_activity_objective,base.group_user,1,1,1,1
-access_mail_message_little_admin,mail.message.little,model_mail_message_little,,1,1,1,1
