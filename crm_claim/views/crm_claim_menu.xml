@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<odoo>
+    <menuitem 
+        id="menu_crm_claim" 
+        name="Post venta" 
+        groups="sales_team.group_sale_salesman" 
+        parent="sale.sale_menu_root" 
+        sequence="5" 
+    />
+    <menuitem id="menu_crm_case_claims" 
+        name="Reclamaciones" 
+        parent="menu_crm_claim" 
+        action="crm_claim_category_claim0" 
+        sequence="1"
+    />
+    <menuitem 
+        id="menu_services" 
+        name="Servicios" 
+        groups="sales_team.group_sale_salesman" 
+        parent="menu_crm_claim" 
+        sequence="2" 
+    />    
+    <menuitem 
+        id="menu_claim_stage_view" 
+        name="Etapas" 
+        action="crm_claim_stage_act" 
+        parent="menu_crm_claim" 
+        sequence="20"
+    />
+    <menuitem 
+        action="crm_claim_categ_action" 
+        name="Categorias" 
+        id="menu_crm_case_claim-act" 
+        parent="menu_crm_claim" 
+        groups="base.group_no_one"
+    />
+    <menuitem 
+        action="crm_claim_origin_action" 
+        name="Origenes" 
+        id="menu_crm_case_claim-org-act" 
+        parent="menu_crm_claim" 
+        groups="base.group_no_one"
+    />
+</odoo>

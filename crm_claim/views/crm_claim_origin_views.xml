@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="crm_claim_origin_form" model="ir.ui.view">
+        <field name="name">crm.claim.origin.form</field>
+        <field name="model">crm.claim.origin</field>
+        <field name="arch" type="xml">
+            <form string="Origen de reclamaciones">
+                <group>
+                    <field name="name"/>
+                    <field name="other"/>                    
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="crm_claim_origin_tree" model="ir.ui.view">
+        <field name="name">crm.claim.origin.tree</field>
+        <field name="model">crm.claim.origin</field>
+        <field name="arch" type="xml">
+            <tree string="Origen de reclamaciones">
+                <field name="name"/>
+                <field name="other"/>
+            </tree>
+        </field>
+    </record>
+    <record id="crm_claim_origin_action" model="ir.actions.act_window">
+        <field name="name">Origen de reclamaciones</field>
+        <field name="res_model">crm.claim.origin</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="crm_claim_origin_tree"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Haga clic para crear un origen de reclamacion.</p>
+            <p>Crea origenes de reclamaciones para administrar y clasificar mejor tus reclamaciones. Algunos ejemplos de reclamaciones pueden ser: accion preventiva, accion correctiva.</p>
+        </field>
+    </record>
+</odoo>

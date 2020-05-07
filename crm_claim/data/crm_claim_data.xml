@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+    <record model="crm.claim.origin" id="categ_claim1">
+        <field name="id">1</field>
+        <field name="name">Dpto Comercial</field>
+        <field name="other">False</field>
+    </record>
+    <record model="crm.claim.origin" id="categ_claim1">
+        <field name="id">2</field>
+        <field name="name">Dpto Logistica</field>
+        <field name="other">False</field>
+    </record>
+    <record model="crm.claim.origin" id="categ_claim1">
+        <field name="id">3</field>
+        <field name="name">Transporte</field>
+        <field name="other">False</field>
+    </record>
+    <record model="crm.claim.origin" id="categ_claim1">
+        <field name="id">4</field>
+        <field name="name">Dpto Compras</field>
+        <field name="other">False</field>
+    </record>
+    <record model="crm.claim.origin" id="categ_claim1">
+        <field name="id">5</field>
+        <field name="name">Proveedor</field>
+        <field name="other">False</field>
+    </record>
+    <record model="crm.claim.origin" id="categ_claim1">
+        <field name="id">6</field>
+        <field name="name">Dpto Administracion</field>
+        <field name="other">False</field>
+    </record>    
+    <record model="crm.claim.origin" id="categ_claim1">
+        <field name="id">7</field>
+        <field name="name">Instalador</field>
+        <field name="other">False</field>
+    </record>
+    <record model="crm.claim.origin" id="categ_claim1">
+        <field name="id">8</field>
+        <field name="name">Otro</field>
+        <field name="other">True</field>
+    </record>    
+    <record model="crm.claim.category" id="categ_claim1">
+        <field name="id">1</field>
+        <field name="name">Reclamacion de cliente</field>
+        <field name="team_id" ref="sales_team.team_sales_department"/>
+    </record>
+    <record model="crm.claim.category" id="categ_claim2">
+        <field name="id">2</field>
+        <field name="name">No conformidad a proveedor</field>
+        <field name="team_id" ref="sales_team.team_sales_department"/>
+    </record>
+    <record model="crm.claim.category" id="categ_claim3">
+        <field name="id">3</field>
+        <field name="name">Reclamacion interna</field>
+        <field name="team_id" ref="sales_team.team_sales_department"/>
+    </record>    
+    <record model="crm.claim.stage" id="stage_claim1">
+        <field name="id">1</field>
+        <field name="name">Nueva</field>
+        <field name="sequence">1</field>
+        <field name="case_default" eval="True"/>
+    </record>
+    <record model="crm.claim.stage" id="stage_claim5">
+        <field name="id">2</field>
+        <field name="name">En progreso</field>
+        <field name="sequence">27</field>
+        <field name="case_default" eval="True"/>
+    </record>
+    <record model="crm.claim.stage" id="stage_claim2">
+        <field name="id">3</field>
+        <field name="name">Establecida</field>
+        <field name="sequence">28</field>
+        <field name="case_default" eval="True"/>
+    </record>
+    <record model="crm.claim.stage" id="stage_claim3">
+        <field name="id">4</field>
+        <field name="name">Rechazada</field>
+        <field name="sequence">29</field>
+        <field name="case_default" eval="True"/>
+    </record>
+</odoo>
