@@ -6,6 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class CrmClaimReport(models.AbstractModel):
     _name = 'report.crm_claim.pdf'
+    _description = 'Crm Claim Report'
     
     code = fields.Char(
         string='Numero',
