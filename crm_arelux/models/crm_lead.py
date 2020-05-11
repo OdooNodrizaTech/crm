@@ -47,8 +47,10 @@ class CrmLead(models.Model):
             
     @api.one        
     def _get_partner_id_user_id(self):
-        for crm_lead_obj in self:
-            crm_lead_obj.partner_id_user_id = crm_lead_obj.partner_id.user_id
+        for obj in self:
+            obj.partner_id_user_id = False
+            if obj.partner_id.id>0:
+                obj.partner_id_user_id = obj.partner_id.user_id.id
     
     @api.one
     def clean_next_activity(self):
@@ -78,17 +80,16 @@ class CrmLead(models.Model):
         return super(CrmLead, self).action_set_lost()
                 
     @api.onchange('user_id')
-    def change_user_id(self):
-        return_item = super(CrmLead, self).change_user_id()
+    def function_custom_user_id(self):
         #operations
         if self._origin.id>0 and self.user_id.id>0:                                             
             self.fix_update_team_id()            
             #user_id
             if self.partner_id.id>0:
-                if self.partner_id.user_id.id==0:
-                    self.partner_id.user_id = self.user_id.id
-        #return
-        return return_item
+                if self.partner_id.user_id.id==0 or self.partner_id.user_id.id==False:
+                    self.partner_id.write({
+                        'user_id': self.user_id.id
+                    })
         
     @api.one
     def fix_update_team_id(self):        
