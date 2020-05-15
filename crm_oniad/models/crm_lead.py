@@ -116,26 +116,13 @@ class CrmLead(models.Model):
     def _lead_create_contact(self, name, is_company, parent_id=False):
         return_def = super(CrmLead, self)._lead_create_contact(name, is_company, parent_id)
         return_def.website = self.website
-        return return_def
-    
-    @api.one
-    def clean_next_activity(self):
-        #next_activity_id
-        if self.next_activity_id.id>0:
-            self.next_activity_id = False
-        #date_action
-        if self.date_action!=False:
-            self.date_action = False
-        #title_action
-        if self.title_action!=False:
-            self.title_action = False
+        return return_def    
     
     @api.multi
     def action_set_won(self):
         #done_user_id
         for lead in self:
             lead.done_user_id = lead.user_id
-            lead.clean_next_activity()
         #super            
         return super(CrmLead, self).action_set_won()
         
@@ -143,7 +130,6 @@ class CrmLead(models.Model):
     def action_set_lost(self):
         #done_user_id
         for lead in self:
-            lead.clean_next_activity()
         #super            
         return super(CrmLead, self).action_set_lost()                                                                    
                 
