@@ -124,14 +124,7 @@ class CrmLead(models.Model):
         for lead in self:
             lead.done_user_id = lead.user_id
         #super            
-        return super(CrmLead, self).action_set_won()
-        
-    @api.multi
-    def action_set_lost(self):
-        #done_user_id
-        for lead in self:
-        #super            
-        return super(CrmLead, self).action_set_lost()                                                                    
+        return super(CrmLead, self).action_set_won()                                                                    
                 
     @api.depends('date_deadline')
     def _compute_day_deadline(self):
