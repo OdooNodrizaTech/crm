@@ -124,15 +124,16 @@ class CrmClaim(models.Model):
         self.org_other_show = False
         if self.org_id.id!=False and self.org_id.other==True:
             self.org_other_show = True
-    
+
     @api.onchange('model_ref_id')
     def change_model_ref_id(self):
-        self.carrier_id = False#Fix default
-        
-        if self.model_ref_id._name=='sale.order':
-            if self.model_ref_id.id>0:
-               if self.model_ref_id.carrier_id.id>0:
-                    self.carrier_id = self.model_ref_id.carrier_id.id                                
+        self.carrier_id = False # Fix default
+
+        if self.model_ref_id != False:
+            if self.model_ref_id._name == 'sale.order':
+                if self.model_ref_id.id > 0:
+                    if self.model_ref_id.carrier_id.id > 0:
+                        self.carrier_id = self.model_ref_id.carrier_id.id
     
     @api.model
     def create(self, values):
@@ -148,20 +149,19 @@ class CrmClaim(models.Model):
                 values['partner_id'] = model_ref_search_ids.partner_id.id
                 values['carrier_id'] = model_ref_search_ids.carrier_id.id            
             
-        return super(CrmClaim, self).create(values)    
+        return super(CrmClaim, self).create(values)
 
     @api.multi
     def write(self, values):
-        if values.get('resolution')!=False and self.date_closed==False:
+        if values.get('resolution') != False and self.date_closed == False:
             values['date_closed'] = fields.datetime.now()
-        
-        if 'model_ref_id' in values and values.get('model_ref_id')!=False:
-            model_ref_name, model_ref_id  = values.get('model_ref_id').split(',')
-            if model_ref_name=='res.partner':
+
+        if 'model_ref_id' in values and values.get('model_ref_id') != False:
+            model_ref_name, model_ref_id = values.get('model_ref_id').split(',')
+            if model_ref_name == 'res.partner':
                 values['partner_id'] = model_ref_id
-            elif model_ref_name=='sale.order' or model_ref_name=='purchase.order' or model_ref_name=='account.invoice':
+            elif model_ref_name == 'sale.order' or model_ref_name == 'purchase.order' or model_ref_name == 'account.invoice':
                 model_ref_search_ids = self.env[model_ref_name].search([('id', '=', model_ref_id)])[0]
                 values['partner_id'] = model_ref_search_ids.partner_id.id
-                values['carrier_id'] = model_ref_search_ids.carrier_id.id
-                                                                                                      
-        return super(CrmClaim, self).write(values)    
+        #return
+        return super(CrmClaim, self).write(values)
