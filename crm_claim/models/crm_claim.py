@@ -44,9 +44,17 @@ class CrmClaim(models.Model):
     )
     model_ref_id = fields.Reference(
         #selection=referenceable_models,
-        selection=[('sale.order','Pedido de venta'),('res.partner','Empresa'),('account.invoice','Factura'),('product.product','Producto')],
+        selection=[
+            ('sale.order','Pedido de venta'),
+            ('res.partner','Empresa'),
+            ('account.invoice','Factura'),
+            ('product.product','Producto')],
         string='Referencia',
-        oldname='ref',
+        oldname='ref'
+    )
+    reference = fields.Char(
+        string='Referencia (nombre)',
+        help='Referencia auto-definida segun el model_ref_id'
     )
     carrier_id = fields.Many2one(
         comodel_name='delivery.carrier',
@@ -137,30 +145,46 @@ class CrmClaim(models.Model):
     
     @api.model
     def create(self, values):
+        #code
         if values.get('code', '/') == '/':
             values['code'] = self.env['ir.sequence'].next_by_code('crm.claim')
-            
+        #model_ref_id
         if 'model_ref_id' in values and values.get('model_ref_id')!=False:
-            model_ref_name, model_ref_id  = values.get('model_ref_id').split(',')    
-            if model_ref_name=='res.partner':
-                values['partner_id'] = model_ref_id
-            elif model_ref_name=='sale.order' or model_ref_name=='purchase.order' or model_ref_name=='account.invoice':
-                model_ref_search_ids = self.env[model_ref_name].search([('id', '=', model_ref_id)])[0]
-                values['partner_id'] = model_ref_search_ids.partner_id.id
+            model_ref_name, model_ref_id  = values.get('model_ref_id').split(',')
+            #model_ref_search_id
+            model_ref_search_id = self.env[model_ref_name].search([('id', '=', model_ref_id)])[0]
+            # partner_id
+            if model_ref_name == 'res.partner':
+                values['partner_id'] = model_ref_search_id.id
+            else:
+                values['partner_id'] = model_ref_search_id.partner_id.id
+            # reference
+            if model_ref_name!='account.invoice':
+                values['reference'] = model_ref_search_id.name
+            else:
+                values['reference'] = model_ref_search_id.number
         #return
         return super(CrmClaim, self).create(values)
 
     @api.multi
     def write(self, values):
+        #date_closed
         if values.get('resolution') != False and self.date_closed == False:
             values['date_closed'] = fields.datetime.now()
-
+        #model_ref_id
         if 'model_ref_id' in values and values.get('model_ref_id') != False:
             model_ref_name, model_ref_id = values.get('model_ref_id').split(',')
+            #model_ref_search_id
+            model_ref_search_id = self.env[model_ref_name].search([('id', '=', model_ref_id)])[0]
+            #partner_id
             if model_ref_name == 'res.partner':
-                values['partner_id'] = model_ref_id
-            elif model_ref_name == 'sale.order' or model_ref_name == 'purchase.order' or model_ref_name == 'account.invoice':
-                model_ref_search_ids = self.env[model_ref_name].search([('id', '=', model_ref_id)])[0]
-                values['partner_id'] = model_ref_search_ids.partner_id.id
+                values['partner_id'] = model_ref_search_id.id
+            else:
+                values['partner_id'] = model_ref_search_id.partner_id.id
+            # reference
+            if model_ref_name != 'account.invoice':
+                values['reference'] = model_ref_search_id.name
+            else:
+                values['reference'] = model_ref_search_id.number
         #return
         return super(CrmClaim, self).write(values)

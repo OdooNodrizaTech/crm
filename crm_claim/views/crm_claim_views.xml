@@ -10,7 +10,7 @@
                 <field name="stage_id"/>
                 <field name="org_id"/>
                 <field name="carrier_id"/>
-                <field name="model_ref_id"/>
+                <field name="reference"/>
             </tree>
         </field>
     </record>
@@ -84,6 +84,8 @@
                 <filter string="Resuelto" domain="[('stage_id','=', 3)]"/>
                 <filter string="Rechazado" domain="[('stage_id','=', 4)]"/>
                 <field name="partner_id" filter_domain="[('partner_id','child_of',self)]"/>
+                <field name="code"/>
+                <field name="reference" string="Referencia"/>
                 <field name="user_id"/>
                 <filter string="Mis reclamaciones" domain="[('user_id','=',uid)]" name="my_crm_claims_filter"/>
                 <group expand="0" name="claims" string="Group By">
