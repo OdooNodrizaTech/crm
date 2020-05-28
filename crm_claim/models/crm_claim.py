@@ -148,7 +148,7 @@ class CrmClaim(models.Model):
             elif model_ref_name=='sale.order' or model_ref_name=='purchase.order' or model_ref_name=='account.invoice':
                 model_ref_search_ids = self.env[model_ref_name].search([('id', '=', model_ref_id)])[0]
                 values['partner_id'] = model_ref_search_ids.partner_id.id
-        #return                            
+        #return
         return super(CrmClaim, self).create(values)    
 
     @api.multi
