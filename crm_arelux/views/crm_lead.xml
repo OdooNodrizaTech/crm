@@ -41,6 +41,8 @@
             </field>
             <field name="fax" position="after">
                 <field name="website" widget="url" />
+                <field name="sessionAdGroupCF7" readonly="1" />
+                <field name="sessionAdSetCF7" readonly="1" />
             </field>                                                
         </field>
     </record>

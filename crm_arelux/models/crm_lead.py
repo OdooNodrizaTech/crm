@@ -32,6 +32,12 @@ class CrmLead(models.Model):
     website = fields.Char(
         string='Sitio web'
     )
+    sessionAdGroupCF7 = fields.Char(
+        string='sessionAdGroupCF7'
+    )
+    sessionAdSetCF7 = fields.Char(
+        string='sessionAdSetCF7'
+    )
     
     @api.model        
     def _get_date_deadline_override(self):
