@@ -26,6 +26,7 @@ class CrmLeadAccountInvoiceReport(models.Model):
     margin_total_out_refund = fields.Monetary('Margin Total Out Refund', readonly=True)        
     
     def init(self):
+        '''
         tools.drop_view_if_exists(self._cr, 'crm_lead_account_invoice_report')
         self._cr.execute("""
             CREATE VIEW crm_lead_account_invoice_report AS (
@@ -43,3 +44,4 @@ class CrmLeadAccountInvoiceReport(models.Model):
                 GROUP BY cl.id, soair_total.currency_id
                 ORDER BY cl.id ASC
             )""")
+        '''
