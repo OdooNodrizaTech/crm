@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
 from odoo.tools import html2plaintext
 from odoo.addons.base.res.res_request import referenceable_models

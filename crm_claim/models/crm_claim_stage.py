@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import fields, models
 
-
 class CrmClaimStage(models.Model):
-    """ Model for claim stages. This models the main stages of a claim
-        management flow. Main CRM objects (leads, opportunities, project
-        issues, ...) will now use only stages, instead of state and stages.
-        Stages are for example used to display the kanban view of records.
-    """
     _name = "crm.claim.stage"
     _description = "Etapas reclamaciones"
     _order = "sequence"
