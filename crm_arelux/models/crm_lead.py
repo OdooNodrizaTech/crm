@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 from odoo.exceptions import Warning
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
@@ -16,14 +16,14 @@ class CrmLead(models.Model):
         readonly=True
     )
     comment_customer = fields.Char(
-        string='Comentarios Cliente',
+        string='Comment customer',
         size=80
     )            
     partner_id_user_id = fields.Many2one(
         comodel_name='res.users',        
         compute='_get_partner_id_user_id',
         store=False,
-        string='Comercial cliente'
+        string='User partner'
     )
     sessionAdGroupCF7 = fields.Char(
         string='sessionAdGroupCF7'
@@ -40,7 +40,7 @@ class CrmLead(models.Model):
     
     date_deadline_override = fields.Date(
         default=_get_date_deadline_override,
-        string='Cierre previsto', 
+        string='Planned closure',
         store=False
     )
             
@@ -86,17 +86,17 @@ class CrmLead(models.Model):
             #date_deadline
             if 'date_deadline' not in values:
                 allow_create = False
-                raise Warning("Es necesario definir una fecha de cierre previsto para poder crear el flujo")
+                raise Warning(_('It is necessary to define an expected closing date to be able to create the flow'))
             else:                                                                                         
                 if values['date_deadline']==False:
                     allow_create = False
-                    raise Warning("Es necesario definir una fecha de cierre previsto para poder crear el flujo")            
+                    raise Warning(_('It is necessary to define an expected closing date to be able to create the flow'))
                 else:
                     current_date = fields.Datetime.from_string(str(datetime.today().strftime("%Y-%m-%d")))
                     days_difference = (fields.Datetime.from_string(values.get('date_deadline'))-current_date).days
                     if days_difference>90:
                         allow_create = False
-                        raise Warning("El cierre previsto no puede ser superior a 90 dias ni anterior a la fecha actual ("+str(days_difference)+") al crear")
+                        raise Warning(_('The expected closure cannot be more than 90 days or prior to the current date (%s) when creating') % (str(days_difference)))
         #operations
         if allow_create==True:    
             return super(CrmLead, self).create(values)                                            
@@ -110,13 +110,13 @@ class CrmLead(models.Model):
                 if 'date_deadline' in vals:
                     if vals['date_deadline']==False:
                         allow_write = False
-                        raise Warning("Es necesario definir una fecha de cierre previsto para poder editar el flujo")
+                        raise Warning(_('It is necessary to define an expected closing date to be able to create the flow'))
                     else:                        
                         current_date = fields.Datetime.from_string(str(datetime.today().strftime("%Y-%m-%d")))
                         days_difference = (fields.Datetime.from_string(vals['date_deadline'])-current_date).days
                         if days_difference>90:
                             allow_write = False
-                            raise Warning("El cierre previsto no puede ser superior a 90 dias ni anterior a la fecha actual ("+str(days_difference)+") al editar")            
+                            raise Warning(_('The expected closure cannot be more than 90 days or prior to the current date (%s) when creating') % (str(days_difference)))
             #operations
             if allow_write==True:
                 #check user_id
@@ -131,7 +131,7 @@ class CrmLead(models.Model):
         #allow_write
         if allow_write==True:                                      
             return_object = super(CrmLead, self).write(vals)        
-            #fix tags                                 
+            #fix tags
             if 'tag_ids' in vals and self.tag_ids!=False:
                 tag_ids = []    
                 for tag_id in self.tag_ids:
@@ -149,5 +149,5 @@ class CrmLead(models.Model):
                                 tag_ids2.append(tag_id)
                         
                         sale_order.tag_ids = self.env['crm.lead.tag'].search([('id', 'in', tag_ids2)])                                                                                                                
-            #return                                                                    
+            #return
             return return_object                                                        

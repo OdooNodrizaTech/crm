@@ -32,7 +32,7 @@
         <field name="priority" eval="20"/>                
         <field name="arch" type="xml">
             <page name="lead" position="after">
-                <page name="comment_customer" string="Comentarios Cliente">
+                <page name="comment_customer" string="Comment customer">
                     <field name="comment_customer"/>
                 </page>
             </page>
@@ -52,13 +52,13 @@
         <field name="priority" eval="20"/>                
         <field name="arch" type="xml">
             <filter name="activities_today" position="replace">
-                <filter string="Actividades de Hoy" name="today" domain="[('date_action', '>=', context_today().strftime('%Y-%m-%d 00:00:00')),('date_action', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
-                <filter string="Actividades de esta Semana" name="this_week" domain="['&amp;', ('date_action', '>=', context_today().strftime('%Y-%m-%d 00:00:00')),('date_action', '&lt;=', (context_today()+datetime.timedelta(days=7)).strftime('%Y-%m-%d 23:59:59'))]"/>                
+                <filter string="Today activities" name="today" domain="[('date_action', '>=', context_today().strftime('%Y-%m-%d 00:00:00')),('date_action', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <filter string="This week activities" name="this_week" domain="['&amp;', ('date_action', '>=', context_today().strftime('%Y-%m-%d 00:00:00')),('date_action', '&lt;=', (context_today()+datetime.timedelta(days=7)).strftime('%Y-%m-%d 23:59:59'))]"/>
             </filter>            
             <filter name="unassigned" position="after">
                 <separator/>
-                <filter string="Flujos" name="date_conversion_false" domain="[('date_conversion','=', False)]"/>
-                <filter string="Convertidos" name="date_conversion_true" domain="[('date_conversion','!=', False)]"/>                
+                <filter string="Opportunities" name="date_conversion_false" domain="[('date_conversion','=', False)]"/>
+                <filter string="Converted" name="date_conversion_true" domain="[('date_conversion','!=', False)]"/>
             </filter>                                                
         </field>
     </record>
@@ -70,12 +70,12 @@
         <field name="arch" type="xml">
             <filter name="assigned_to_me" position="before">
                 <separator/>
-                <filter string="Con siguiente actividad" name="with_date_action" domain="[('date_action','!=',False)]"/>
-                <filter string="Sin siguiente actividad" name="without_date_action" domain="[('date_action','=',False)]"/>
+                <filter string="With next activity" name="with_date_action" domain="[('date_action','!=',False)]"/>
+                <filter string="Without next activity" name="without_date_action" domain="[('date_action','=',False)]"/>
                 <separator/>                
             </filter>
             <filter name="salesperson" position="after">
-                <filter string="Provincia" name="groupby_state_id" domain="[]" context="{'group_by':'state_id'}"/>
+                <filter string="Country state" name="groupby_state_id" domain="[]" context="{'group_by':'state_id'}"/>
             </filter>                                                                                                                
         </field>
     </record>                                                        
