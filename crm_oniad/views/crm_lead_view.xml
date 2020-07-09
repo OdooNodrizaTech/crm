@@ -84,7 +84,7 @@
             </field>
             <xpath expr="//kanban/templates//div//div/strong" position="before">            
                 <t t-if="record.day_deadline.raw_value and record.day_deadline.raw_value&lt;=0">
-                    <span style="color:red;"><b>Urgente</b></span><br/>  
+                    <span style="color:red;"><b>Urgent</b></span><br/>
                 </t>                                                
             </xpath>            
         </field>
