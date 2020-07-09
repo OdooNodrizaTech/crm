@@ -9,7 +9,7 @@
             <field name="tag_ids" position="after">
                 <field name="commercial_activity_type" />
                 <field name="lead_oniad_type" />
-                <field name="marketing_campaign" readonly="1" string="Campaña de marketing" />
+                <field name="marketing_campaign" readonly="1" string="Marketing campaign" />
                 <field name="crm_lead_source_id" readonly="1" />                                                
             </field>
             <field name="user_id" position="after">
@@ -42,7 +42,7 @@
                 <field name="commercial_activity_type" />
                 <field name="lead_oniad_type" />
                 <field name="type" invisible="1" />            
-                <field name="marketing_campaign" readonly="1" string="Campaña de marketing" />
+                <field name="marketing_campaign" readonly="1" string="Marketing campaign" />
                 <field name="crm_lead_source_id" readonly="1" />                
             </field>                                                
         </field>
@@ -70,7 +70,7 @@
                 <field name="commercial_activity_type" />
                 <field name="lead_oniad_type" />
                 <field name="type" invisible="1" />                
-                <field name="marketing_campaign" readonly="1" string="Campaña de marketing" />
+                <field name="marketing_campaign" readonly="1" string="Marketing campaign" />
             </field>                                                
         </field>
     </record>
@@ -97,8 +97,8 @@
         <field name="arch" type="xml">
             <filter name="unassigned" position="after">
                 <separator/>
-                <filter string="Flujos" name="date_conversion_false" domain="[('date_conversion','=', False)]"/>
-                <filter string="Convertidos" name="date_conversion_true" domain="[('date_conversion','!=', False)]"/>                
+                <filter string="Opportunities" name="date_conversion_false" domain="[('date_conversion','=', False)]"/>
+                <filter string="Converted" name="date_conversion_true" domain="[('date_conversion','!=', False)]"/>
             </filter>                                                
         </field>
     </record>        

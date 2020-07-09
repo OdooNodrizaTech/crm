@@ -11,8 +11,8 @@ class CrmLeadSource(models.Model):
     _order = "position asc"    
     
     name = fields.Char(        
-        string='Nombre'
+        string='Name'
     )
     position = fields.Integer(        
-        string='Posicion'
+        string='Position'
     )                                       

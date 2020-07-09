@@ -3,7 +3,7 @@
 import logging
 _logger = logging.getLogger(__name__)
 
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 from odoo.exceptions import Warning
 from datetime import datetime
 
@@ -14,15 +14,15 @@ class CrmLead(models.Model):
     
     done_user_id = fields.Many2one(
         comodel_name='res.users',        
-        string='Comercial hecho'
+        string='User done'
     )
     day_deadline = fields.Float(
         compute='_compute_day_deadline', 
-        string='Dias para el cierre previsto', 
+        string='Days for the planned closing',
         store=True
     )
     website = fields.Char(
-        string='Sitio web'
+        string='Website'
     )
     marketing_campaign = fields.Boolean( 
         string='Campana de marketing'
@@ -36,10 +36,10 @@ class CrmLead(models.Model):
             ('account','Account'), 
             ('hunter','Hunter')                          
         ],
-        string='Tipo de actividad comercial'
+        string='Commercial activity type'
     )
     register_token = fields.Char(
-        string='Registro Token', 
+        string='Register token',
         copy=False,
         default=lambda self: str(uuid.uuid4()),
         required=True
@@ -55,7 +55,7 @@ class CrmLead(models.Model):
             ('catchment','Captacion'),
             ('other','Otro')                         
         ],
-        string='Tipo de lead'
+        string='Lead type'
     )                                        
     
     @api.onchange('type')
@@ -79,19 +79,19 @@ class CrmLead(models.Model):
         if value_type=='lead':
             if value_commercial_activity_type!='hunter':
                 allow_create = False
-                raise Warning("Una iniciativa debe tener el tipo de actividad comercial 'Hunter'")
+                raise Warning(_("An lead must have the type of commercial activity 'Hunter'"))
                 
             if allow_create==True and value_lead_oniad_type!='catchment':
                 allow_create = False
-                raise Warning("Una iniciativa debe tener el tipo de lead a 'Captacion'")
+                raise Warning(_("An lead must have the type of lead to 'Capture'"))
         else:
             if value_commercial_activity_type!='account':
                 allow_create = False
-                raise Warning("Un flujo de ventas debe tener el tipo de actividad comercial 'Account'")
+                raise Warning(_("A opportunity must have the business type 'Account'"))
                 
             if allow_create==True and value_lead_oniad_type=='catchment':
                 allow_create = False
-                raise Warning("Un flujo de ventas no debe tener el tipo de lead 'Captacion'")
+                raise Warning(_("A opportunity must not have the lead type 'Capture'"))
     
         if allow_create==True:
             return_val = super(CrmLead, self).create(values)
@@ -124,7 +124,7 @@ class CrmLead(models.Model):
         #done_user_id
         for lead in self:
             lead.done_user_id = lead.user_id
-        #super            
+        #super
         return super(CrmLead, self).action_set_won()                                                                    
                 
     @api.depends('date_deadline')
