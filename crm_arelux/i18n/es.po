@@ -1,0 +1,113 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* crm_arelux
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0-20200601\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-09 10:19+0000\n"
+"PO-Revision-Date: 2020-07-09 10:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: crm_arelux
+#: model:ir.model.fields,field_description:crm_arelux.field_crm_lead__comment_customer
+#: model_terms:ir.ui.view,arch_db:crm_arelux.crm_arelux_crm_case_form_view_oppor
+msgid "Comment customer"
+msgstr "Comentario de cliente"
+
+#. module: crm_arelux
+#: model:ir.model,name:crm_arelux.model_crm_lead2opportunity_partner
+msgid "Convert Lead to Opportunity (not in mass)"
+msgstr "Convertir Iniciativa en Oportunidad (sin ser en masa)"
+
+#. module: crm_arelux
+#: model_terms:ir.ui.view,arch_db:crm_arelux.crm_arelux_view_crm_case_opportunities_filter
+msgid "Converted"
+msgstr "Convertido"
+
+#. module: crm_arelux
+#: model_terms:ir.ui.view,arch_db:crm_arelux.crm_arelux_view_crm_case_leads_filter
+msgid "Country state"
+msgstr "Provincia"
+
+#. module: crm_arelux
+#: code:addons/crm_arelux/models/crm_lead.py:89
+#: code:addons/crm_arelux/models/crm_lead.py:93
+#: code:addons/crm_arelux/models/crm_lead.py:113
+#: code:addonsOdooNodrizaTech/crm/12.0/crm_arelux/models/crm_lead.py:89
+#: code:addonsOdooNodrizaTech/crm/12.0/crm_arelux/models/crm_lead.py:93
+#: code:addonsOdooNodrizaTech/crm/12.0/crm_arelux/models/crm_lead.py:113
+#, python-format
+msgid "It is necessary to define an expected closing date to be able to create the flow"
+msgstr "Es necesario definir una fecha de cierre esperada para poder crear el flujo"
+
+#. module: crm_arelux
+#: model:ir.model.fields,field_description:crm_arelux.field_crm_lead__lead_m2
+msgid "Lead m2"
+msgstr ""
+
+#. module: crm_arelux
+#: model:ir.model,name:crm_arelux.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Iniciativa/Oportunidad"
+
+#. module: crm_arelux
+#: model_terms:ir.ui.view,arch_db:crm_arelux.crm_arelux_view_crm_case_opportunities_filter
+msgid "Opportunities"
+msgstr "Oportunidades"
+
+#. module: crm_arelux
+#: model:ir.model.fields,field_description:crm_arelux.field_crm_lead__date_deadline_override
+msgid "Planned closure"
+msgstr ""
+
+#. module: crm_arelux
+#: code:addons/crm_arelux/models/crm_lead.py:99
+#: code:addons/crm_arelux/models/crm_lead.py:119
+#: code:addonsOdooNodrizaTech/crm/12.0/crm_arelux/models/crm_lead.py:99
+#: code:addonsOdooNodrizaTech/crm/12.0/crm_arelux/models/crm_lead.py:119
+#, python-format
+msgid "The expected closure cannot be more than 90 days or prior to the current date (%s) when creating"
+msgstr "El cierre esperado no puede ser más de 90 días o anterior a la fecha actual (%s) al crear"
+
+#. module: crm_arelux
+#: model_terms:ir.ui.view,arch_db:crm_arelux.crm_arelux_view_crm_case_opportunities_filter
+msgid "This week activities"
+msgstr "Actividades de esta semana"
+
+#. module: crm_arelux
+#: model_terms:ir.ui.view,arch_db:crm_arelux.crm_arelux_view_crm_case_opportunities_filter
+msgid "Today activities"
+msgstr "Actividades de hoy"
+
+#. module: crm_arelux
+#: model:ir.model.fields,field_description:crm_arelux.field_crm_lead__partner_id_user_id
+msgid "User partner"
+msgstr ""
+
+#. module: crm_arelux
+#: model_terms:ir.ui.view,arch_db:crm_arelux.crm_arelux_view_crm_case_leads_filter
+msgid "With next activity"
+msgstr "Con siguiente actividad"
+
+#. module: crm_arelux
+#: model_terms:ir.ui.view,arch_db:crm_arelux.crm_arelux_view_crm_case_leads_filter
+msgid "Without next activity"
+msgstr "Sin siguiente actividad"
+
+#. module: crm_arelux
+#: model:ir.model.fields,field_description:crm_arelux.field_crm_lead__sessionAdGroupCF7
+msgid "sessionAdGroupCF7"
+msgstr ""
+
+#. module: crm_arelux
+#: model:ir.model.fields,field_description:crm_arelux.field_crm_lead__sessionAdSetCF7
+msgid "sessionAdSetCF7"
+msgstr ""
+
