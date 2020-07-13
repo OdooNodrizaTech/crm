@@ -1,16 +1,17 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import fields, models
+
 
 class CrmClaimOrigin(models.Model):
     _name = "crm.claim.origin"
-    _description = "Origen de la reclamacion"
+    _description = "Crm claim origin"
 
     name = fields.Char(
-        string='Nombre',
+        string='Name',
         required=True,
         translate=True,
     )
     other = fields.Boolean(
-        string="Otro"
+        string="Other"
     )    

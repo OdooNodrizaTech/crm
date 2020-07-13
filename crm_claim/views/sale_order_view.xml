@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="crm_claim_view_order_form" model="ir.ui.view">
         <field name="name">crm_claim_view_order_form</field>
         <field name="model">sale.order</field>
@@ -7,12 +8,13 @@
         <field name="priority" eval="19"/>                
         <field name="arch" type="xml">  
             <field name="partner_shipping_id" position="after">                
-                <label for="claim" string="RECLAMACION" />
+                <label for="claim" string="Claim" />
                 <div>
                     <field name="claim"/>
                 </div>
                 <field name="claim_id" attrs="{'invisible': [('claim','=',False)]}"/>
             </field>                        
         </field>                                                           
-    </record>                
+    </record>
+
 </odoo>

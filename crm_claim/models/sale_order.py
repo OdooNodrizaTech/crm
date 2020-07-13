@@ -1,20 +1,18 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import logging
-_logger = logging.getLogger(__name__)
 
 from odoo import api, models, fields
 from odoo.exceptions import Warning
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
                         
     claim = fields.Boolean( 
-        string='Es una reposicion'
+        string='Claim?'
     )
     claim_id = fields.Many2one(
         comodel_name='crm.claim', 
-        string='Reclamacion'
+        string='Claim'
     )    
     
     @api.onchange('claim_id')

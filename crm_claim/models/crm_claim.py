@@ -1,18 +1,16 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, fields, models
 
-import logging
-_logger = logging.getLogger(__name__)
 
 class CrmClaim(models.Model):
     _name = "crm.claim"
-    _description = "Reclamacion"
+    _description = "Crm claims"
     _order = "date desc"
     _inherit = ['mail.thread']
     
     code = fields.Char(
-        string='Numero',
+        string='Number',
         required=True,
         default="/",
         readonly=True,
@@ -29,16 +27,16 @@ class CrmClaim(models.Model):
     resolution = fields.Text()
     quality_observations = fields.Text()    
     date_closed = fields.Datetime(
-        string='Fecha cierre'
+        string='Date closed'
     )
     date = fields.Datetime(
-        string='Fecha',
+        string='Date',
         index=True,
         default=fields.Datetime.now
     )
     categ_id = fields.Many2one(
         comodel_name='crm.claim.category',
-        string='Tipo de reclamacion',
+        string='Categ id',
     )
     model_ref_id = fields.Reference(
         selection=[
@@ -47,60 +45,60 @@ class CrmClaim(models.Model):
             ('account.invoice','Factura'),
             ('product.product','Producto')
         ],
-        string='Referencia'
+        string='Ref'
     )
     reference = fields.Char(
-        string='Referencia (nombre)',
-        help='Referencia auto-definida segun el model_ref_id'
+        string='Ref (name)',
+        help='Auto-define ref with model_ref_id'
     )
     carrier_id = fields.Many2one(
         comodel_name='delivery.carrier',
-        string='Transportista',
+        string='Carrier id',
         store=True
     )    
     org_id = fields.Many2one(
         comodel_name='crm.claim.origin',
-        string='Origen',
+        string='Origin',
     )
     org_other_show = fields.Boolean(
         compute='_get_org_other_show',
         store=False
     )
     org_other = fields.Char(
-        string='Otro',
+        string='Other',
     )    
     corrective_action = fields.Boolean(
-        string="Necesita accion correctiva"
+        string="Corrective action is need?"
     )    
     user_id = fields.Many2one(
         comodel_name='res.users',
-        string='Responsable',
+        string='User id',
         default=lambda self: self.env.user,
     )    
     company_id = fields.Many2one(
         comodel_name='res.company',
-        string='Empresa',
+        string='Company',
         default=lambda self: self.env.user.company_id,
     )
     partner_id = fields.Many2one(
         comodel_name='res.partner',
-        string='Contacto',
+        string='Partner',
     )   
     stage_id = fields.Many2one(
         comodel_name='crm.claim.stage',
-        string='Etapa',
+        string='Stage',
         track_visibility='onchange',
         default=1,
     )
     order_id = fields.Many2one(
         comodel_name='sale.order',
         compute='_get_order_id',
-        string='Reposicion'
+        string='Order'
     )
     
     _sql_constraints = [
         ('crm_claim_unique_code', 'UNIQUE (code)',
-         'El codigo debe ser unico'),
+         'The code must be unique'),
     ]
     
     @api.onchange('org_id')

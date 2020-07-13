@@ -1,12 +1,13 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import api, fields, models
+
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     claim_count = fields.Integer(
-        string='# Reclamaciones',
+        string='# Claims',
         compute='_compute_claim_count',
     )
 

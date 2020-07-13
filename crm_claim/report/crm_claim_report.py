@@ -1,55 +1,53 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import api, fields, models, tools
 
-import logging
-_logger = logging.getLogger(__name__)
 
 class CrmClaimReport(models.AbstractModel):
     _name = 'report.crm_claim.pdf'
     _description = 'Crm Claim Report'
     
     code = fields.Char(
-        string='Numero',
+        string='Name',
         readonly=True
     )        
     description = fields.Text(readonly=True)
     resolution = fields.Text(readonly=True)
     date_closed = fields.Datetime(
-        string='Fecha cierre',
+        string='Date closed',
         readonly=True
     )
     date = fields.Datetime(
-        string='Fecha',
+        string='Date',
         readonly=True
     )
     categ_id = fields.Many2one(
         comodel_name='crm.claim.category',
-        string='Tipo de reclamacion',
+        string='Categ',
         readonly=True
     )
     org_id = fields.Many2one(
         comodel_name='crm.claim.origin',
-        string='Origen',
+        string='Org id',
         readonly=True
     )
     corrective_action = fields.Boolean(
-        string="Necesita accion correctiva",
+        string="Corrective action is need?",
         readonly=True
     )    
     user_id = fields.Many2one(
         comodel_name='res.users',
-        string='Responsable',
+        string='User',
         readonly=True
     )        
     partner_id = fields.Many2one(
         comodel_name='res.partner',
-        string='Contacto',
+        string='Partner',
         readonly=True
     )   
     stage_id = fields.Many2one(
         comodel_name='crm.claim.stage',
-        string='Etapa',
+        string='Stage',
         readonly=True
     )
     attachment_ids = fields.One2many(
