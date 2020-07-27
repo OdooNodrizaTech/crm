@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/OdooNodrizaTech/crm.svg?branch=12.0)](https://travis-ci.org/OdooNodrizaTech/crm)
+[![Coverage Status](https://coveralls.io/repos/OdooNodrizaTech/crm/badge.svg?branch=12.0)](https://coveralls.io/r/OdooNodrizaTech/crm?branch=12.0)
+
 crm
 =========
 Módulos relacionados con CRM
