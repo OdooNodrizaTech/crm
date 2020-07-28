@@ -57,7 +57,7 @@ class CrmClaimReport(models.AbstractModel):
     attachment_ids = fields.One2many(
         comodel_name="ir.attachment",
         inverse_name="res_id",
-        compute="_add_attachment",
+        compute="_compute_attachment_ids",
         readonly=True
     )
 
@@ -78,7 +78,7 @@ class CrmClaimReport(models.AbstractModel):
                 c.partner_id,
                 c.org_id,
                 c.categ_id,
-                avg(extract('epoch' FROM (c.date_closed-c.create_date)))/(3600*24) 
+                avg(extract('epoch' FROM (c.date_closed-c.create_date)))/(3600*24)
                 AS delay_close,
                 (
                     SELECT count(id)
@@ -87,12 +87,13 @@ class CrmClaimReport(models.AbstractModel):
                     AND res_id=c.id
                 ) AS email
                 FROM crm_claim AS c
-                GROUP BY c.id, c.code, c.date, c.date_closed, c.corrective_action, 
+                GROUP BY c.id, c.code, c.date, c.date_closed, c.corrective_action,
                 c.user_id, c.stage_id, c.partner_id, c.org_id, c.categ_id
             )""")
-        
+
     @api.multi
-    def _add_attachment(self):
+    def _compute_attachment_ids(self):
+        self.ensure_one()
         self.attachment_ids = self.env['ir.attachment'].search(
             [
                 ('res_model', '=', 'crm.claim'),

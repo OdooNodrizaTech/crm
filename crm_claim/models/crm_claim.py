@@ -104,10 +104,11 @@ class CrmClaim(models.Model):
     def _compute_order_id(self):
         if self.id:
             items = self.env['sale.order'].search(
-                [                
+                [
                     ('claim', '=', True),
                     ('claim_id', '=', self.id)
-                 ])
+                ]
+            )
             if items:
                 for item in items:
                     self.order_id = item.id
@@ -122,9 +123,8 @@ class CrmClaim(models.Model):
         self.carrier_id = False
         if self.model_ref_id:
             if self.model_ref_id._name == 'sale.order':
-                if self.model_ref_id:
-                   if self.model_ref_id.carrier_id:
-                        self.carrier_id = self.model_ref_id.carrier_id.id
+                if self.model_ref_id.carrier_id:
+                    self.carrier_id = self.model_ref_id.carrier_id.id
 
     @api.model
     def create(self, values):
