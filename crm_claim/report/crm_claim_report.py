@@ -38,29 +38,29 @@ class CrmClaimReport(models.AbstractModel):
     corrective_action = fields.Boolean(
         string="Corrective action is need?",
         readonly=True
-    )    
+    )
     user_id = fields.Many2one(
         comodel_name='res.users',
         string='User',
         readonly=True
-    )        
+    )
     partner_id = fields.Many2one(
         comodel_name='res.partner',
         string='Partner',
         readonly=True
-    )   
+    )
     stage_id = fields.Many2one(
         comodel_name='crm.claim.stage',
         string='Stage',
         readonly=True
     )
     attachment_ids = fields.One2many(
-        comodel_name="ir.attachment", 
-        inverse_name="res_id", 
+        comodel_name="ir.attachment",
+        inverse_name="res_id",
         compute="_add_attachment",
         readonly=True
     )
-    
+
     def init(self):
         tools.drop_view_if_exists(self._cr, 'crm_claim_report')
         self._cr.execute("""
@@ -78,7 +78,8 @@ class CrmClaimReport(models.AbstractModel):
                 c.partner_id,
                 c.org_id,
                 c.categ_id,
-                avg(extract('epoch' FROM (c.date_closed-c.create_date)))/(3600*24) AS delay_close,
+                avg(extract('epoch' FROM (c.date_closed-c.create_date)))/(3600*24) 
+                AS delay_close,
                 (
                     SELECT count(id)
                     FROM mail_message
@@ -86,8 +87,9 @@ class CrmClaimReport(models.AbstractModel):
                     AND res_id=c.id
                 ) AS email
                 FROM crm_claim AS c
-                GROUP BY c.id, c.code, c.date, c.date_closed, c.corrective_action, c.user_id, c.stage_id, c.partner_id, c.org_id, c.categ_id
-            )""")    
+                GROUP BY c.id, c.code, c.date, c.date_closed, c.corrective_action, 
+                c.user_id, c.stage_id, c.partner_id, c.org_id, c.categ_id
+            )""")
         
     @api.multi
     def _add_attachment(self):

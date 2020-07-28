@@ -6,22 +6,22 @@ from odoo.exceptions import Warning as UserError
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
-                        
-    claim = fields.Boolean( 
+
+    claim = fields.Boolean(
         string='Claim?'
     )
     claim_id = fields.Many2one(
-        comodel_name='crm.claim', 
+        comodel_name='crm.claim',
         string='Claim'
-    )    
-    
+    )
+
     @api.onchange('claim_id')
     def change_claim_id(self):
-        if self.claim_id.id>0 and self.partner_id.id==0:
+        if self.claim_id.id > 0 and self.partner_id.id == 0:
             self.partner_id = self.claim_id.partner_id
-            
+
     @api.model
-    def create(self, values): 
+    def create(self, values):
         allow_create = True
         # operations
         if 'claim' in values:
@@ -36,4 +36,4 @@ class SaleOrder(models.Model):
                         ) or 'New Claim'
         # allow_create
         if allow_create:
-            return super(SaleOrder, self).create(values)                        
+            return super(SaleOrder, self).create(values)
