@@ -10,5 +10,5 @@ class CrmClaimCategory(models.Model):
     name = fields.Char(
         string='Name',
         required=True,
-        translate=True,
-    )    
+        translate=True
+    )
