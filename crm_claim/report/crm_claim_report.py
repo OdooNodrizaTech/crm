@@ -6,13 +6,17 @@ from odoo import api, fields, models, tools
 class CrmClaimReport(models.AbstractModel):
     _name = 'report.crm_claim.pdf'
     _description = 'Crm Claim Report'
-    
+
     code = fields.Char(
         string='Name',
         readonly=True
-    )        
-    description = fields.Text(readonly=True)
-    resolution = fields.Text(readonly=True)
+    )
+    description = fields.Text(
+        readonly=True
+    )
+    resolution = fields.Text(
+        readonly=True
+    )
     date_closed = fields.Datetime(
         string='Date closed',
         readonly=True
@@ -87,7 +91,12 @@ class CrmClaimReport(models.AbstractModel):
         
     @api.multi
     def _add_attachment(self):
-        self.attachment_ids = self.env['ir.attachment'].search([('res_model','=','crm.claim'),('res_id','=',self.id)])
-        if self.attachment_ids!=False:
-            for attachment_id in self.attachment_ids:                
-                attachment_id.url = '/web/image/'+str(attachment_id.id)                       
+        self.attachment_ids = self.env['ir.attachment'].search(
+            [
+                ('res_model', '=', 'crm.claim'),
+                ('res_id', '=', self.id)
+            ]
+        )
+        if self.attachment_ids:
+            for attachment_id in self.attachment_ids:
+                attachment_id.url = '/web/image/%s' % attachment_id.id
