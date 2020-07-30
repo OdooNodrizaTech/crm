@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/OdooNodrizaTech/crm.svg?branch=12.0)](https://travis-ci.org/OdooNodrizaTech/crm)
+[![Coverage Status](https://coveralls.io/repos/github/OdooNodrizaTech/crm/badge.svg?branch=12.0)](https://coveralls.io/github/OdooNodrizaTech/crm?branch=12.0)
 
 crm
 =========
