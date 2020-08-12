@@ -1,3 +1,4 @@
+[![Build Status](https://runbot.nodrizatech.com/runbot/badge/14/12.0.svg)](https://runbot.nodrizatech.com/runbot/repo/https-github-com-odoonodrizatech-crm-14)
 [![Build Status](https://travis-ci.org/OdooNodrizaTech/crm.svg?branch=12.0)](https://travis-ci.org/OdooNodrizaTech/crm)
 [![codecov](https://codecov.io/gh/OdooNodrizaTech/crm/branch/12.0/graph/badge.svg)](https://codecov.io/gh/OdooNodrizaTech/crm)
 
