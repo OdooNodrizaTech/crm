@@ -52,19 +52,16 @@
     <record model="crm.claim.category" id="crm_claim_category_1">
         <field name="id">1</field>
         <field name="name">Reclamacion de cliente</field>
-        <field name="team_id" ref="sales_team.team_sales_department"/>
     </record>
 
     <record model="crm.claim.category" id="crm_claim_category_2">
         <field name="id">2</field>
         <field name="name">No conformidad a proveedor</field>
-        <field name="team_id" ref="sales_team.team_sales_department"/>
     </record>
 
     <record model="crm.claim.category" id="crm_claim_category_3">
         <field name="id">3</field>
         <field name="name">Reclamacion interna</field>
-        <field name="team_id" ref="sales_team.team_sales_department"/>
     </record>
 
     <record model="crm.claim.stage" id="crm_claim_stage_1">
